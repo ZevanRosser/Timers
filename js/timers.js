@@ -9,7 +9,11 @@ $(function() {
   }
 
   function slashDate(date) {
-    return date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + date.getMinutes();
+    return date.getMonth() + "/" 
+      + date.getDate() + "/" 
+      + date.getFullYear() + "/" 
+      + date.getHours() + "/" 
+      + date.getMinutes();
   }
 
   function unslashDate(date) {
@@ -23,7 +27,7 @@ $(function() {
     newDate.setSeconds(0);
     return newDate;
   }
-  
+
   //http://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html#fbid=LDmOjlhVJsF
   function dateDifference(a, b) {
     var time = {};
@@ -43,14 +47,14 @@ $(function() {
     var date = "";
     if (time.days > 0) date += time.days + ((time.days == 1) ? " day " : " days ");
     if (time.hours > 0) date += time.hours + ((time.hours == 1) ? " hour " : " hours ");
-    if (time.minutes > 0) date += time.minutes + ((time.minutes == 1) ? " minute " : " minutes ");  
+    if (time.minutes > 0) date += time.minutes + ((time.minutes == 1) ? " minute " : " minutes ");
     return date;
   }
 
   function Timers() {
-    var self = this;
-    var timerData = [];
-    var date = new Date();
+    var self = this,
+        timerData = [],
+        date = new Date();
     date.setSeconds(0);
 
     self.elem = $("#timers").selectAll(self).appendTo(body);
@@ -86,7 +90,7 @@ $(function() {
     self.year.val(date.getYear());
     self.hour.val(date.getHours() % 12);
     self.minute.val(date.getMinutes());
-    
+
     if (date.getHours() > 11) {
       self.ampm.val("pm");
     } else {
@@ -96,10 +100,12 @@ $(function() {
     $("select").change(function() {
       var hourOffset = 0;
       // rework
-      if (self.ampm.val() == "pm" && self.hour.val() != 12) {
+      var ampm = self.ampm.val();
+      var hour = self.hour.val();
+      if (ampm == "pm" && hour != 12) {
         hourOffset = 12;
-      } else if (self.ampm.val() == "am") {
-        if (self.hour.val() == 12) {
+      } else if (ampm == "am") {
+        if (hour == 12) {
           hourOffset = 12;
         }
       }
@@ -138,34 +144,36 @@ $(function() {
         }
       }
     };
-
   }
 
   function Timer(params) {
+    var oneMin = 1000 * 60;
     this.json = params;
     this.elem = $("#timer").selectAll(this);
     this.note.text(params.note);
     this.targetDate = unslashDate(params.date);
     this.now = new Date();
     this.update();
-    setInterval($.proxy(this.update, this), 1000 * 60);
+    setInterval($.proxy(this.update, this), oneMin);
     this.ex.click($.proxy(this.remove, this));
   }
-  Timer.prototype.update = function() {
-    this.now = new Date();
-    var timeLeft = formateTime(dateDifference(this.targetDate, this.now));
-    if (timeLeft == "") {
-      this.timeLeft.text("time is up!");
-      this.elem.css("color", "red");
-    } else {
-      this.timeLeft.text(timeLeft);
+  Timer.prototype = {
+    constructor: Timer,
+    update: function() {
+      this.now = new Date();
+      var timeLeft = formateTime(dateDifference(this.targetDate, this.now));
+      if (timeLeft == "") {
+        this.timeLeft.text("time is up!");
+        this.elem.css("color", "red");
+      } else {
+        this.timeLeft.text(timeLeft);
+      }
+    },
+    remove: function() {
+      this.elem.remove();
+      timers.removeTimer(this.json.id);
     }
   };
-  Timer.prototype.remove = function() {
-    this.elem.remove();
-    timers.removeTimer(this.json.id);
-  };
-
 
   var timers = new Timers();
 
