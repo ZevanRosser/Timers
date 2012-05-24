@@ -40,7 +40,7 @@ $(function() {
   }
 
   function formateTime(time) {
-    var date = "in ";
+    var date = "";
     if (time.days > 0) date += time.days + ((time.days == 1) ? " day " : " days ");
     if (time.hours > 0) date += time.hours + ((time.hours == 1) ? " hour " : " hours ");
     if (time.minutes > 0) date += time.minutes + ((time.minutes == 1) ? " minute " : " minutes ");  
@@ -60,7 +60,7 @@ $(function() {
       var leng = timerData.length;
       for (var i = 0; i < leng; i++) {
         var timer = new Timer(timerData[i]);
-        timer.elem.appendTo(self.timers);
+        timer.elem.prependTo(self.timers);
       }
     }
 
@@ -124,6 +124,8 @@ $(function() {
         timer.elem.prependTo(self.timers);
         timerData.push(timer.json);
         save();
+        self.noteValue.val("");
+        console.log(self.noteValue.val());
       }
     });
 
@@ -151,10 +153,12 @@ $(function() {
   }
   Timer.prototype.update = function() {
     this.now = new Date();
-    if ((this.targetDate.getTime() - this.now.getTime()) <= 0) {
-      this.timeLeft.text("no time left");
+    var timeLeft = formateTime(dateDifference(this.targetDate, this.now));
+    if (timeLeft == "") {
+      this.timeLeft.text("time is up!");
+      this.elem.css("color", "red");
     } else {
-      this.timeLeft.text(formateTime(dateDifference(this.targetDate, this.now)));
+      this.timeLeft.text(timeLeft);
     }
   };
   Timer.prototype.remove = function() {
