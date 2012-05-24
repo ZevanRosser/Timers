@@ -1,0 +1,26 @@
+body,html{
+  padding : 10px; 
+  font-family : Helvetica, sans-serif;
+}
+h2{
+  font-size : 50px; 
+  font-weight  : bold;
+}
+#add-wrapper{
+ padding : 10px;
+ border : 1px solid #ccc; 
+ margin-top : 10px;
+ margin-bottom : 20px;
+}
+.timer{
+  padding : 10px;
+  margin-top : 5px;
+  border : 1px solid #ccc; 
+}
+.timer button{
+  float : right; 
+}
+.time-left{
+  font-weight : bold; 
+  font-size : 40px;
+}
