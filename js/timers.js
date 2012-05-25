@@ -99,15 +99,13 @@ $(function() {
 
     $("select").change(function() {
       var hourOffset = 0;
-      // rework
       var ampm = self.ampm.val();
       var hour = self.hour.val();
+      
       if (ampm == "pm" && hour != 12) {
         hourOffset = 12;
-      } else if (ampm == "am") {
-        if (hour == 12) {
+      } else if (ampm == "am" && hour == 12) {
           hourOffset = 12;
-        }
       }
 
       date.setHours(parseInt(self.hour.val()) + hourOffset);
@@ -131,7 +129,6 @@ $(function() {
         timerData.push(timer.json);
         save();
         self.noteValue.val("");
-        console.log(self.noteValue.val());
       }
     });
 

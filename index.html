@@ -23,59 +23,59 @@
         <div id="add-wrapper">
           <form data-var="addTimer"> 
             <input data-var="noteValue" 
-                   type="text"
-                   placeholder="timer text" 
-                   autocapitalize="off" 
-                   autocorrect="off" />
+            type="text"
+            placeholder="timer text" 
+            autocapitalize="off" 
+            autocorrect="off" />
             <br/>
             <div class="date">
-            date:
-            <select data-var="month">
-            <option value="0">January</option>
-            <option value="1">February</option>
-            <option value="2">March</option>
-            <option value="3">April</option>
-            <option value="4">May</option>
-            <option value="5">June</option>
-            <option value="6">July</option>
-            <option value="7">August</option>
-            <option value="8">September</option>
-            <option value="9">October</option>
-            <option value="10">November</option>
-            <option value="11">December</option>
-          </select>
-            <select data-var="day">
-            <option class="select-all-list">~days</option>
-          </select>
-            <select data-var="year">
-            <option class="select-all-list">~years</option>
-          </select>
-          </div>
+              date:
+              <select data-var="month">
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+              <select data-var="day">
+                <option class="select-all-list">~days</option>
+              </select>
+              <select data-var="year">
+                <option class="select-all-list">~years</option>
+              </select>
+            </div>
             <div>
-            time:
-            <select data-var="hour">
-            <option class="select-all-list">~hours</option>
-          </select>:<select data-var="minute">
-            <option class="select-all-list">~minutes</option>
-          </select>
-            <select data-var="ampm">
-            <option>am</option>
-            <option>pm</option>
-          </select>
-          </div>
+              time:
+              <select data-var="hour">
+                <option class="select-all-list">~hours</option>
+              </select>:<select data-var="minute">
+              <option class="select-all-list">~minutes</option>
+              </select>
+              <select data-var="ampm">
+                <option>am</option>
+                <option>pm</option>
+              </select>
+            </div>
             <button class="add">add timer</button>
           </form>
-          </div>
-          </div>
-            <div data-var="timers"></div>
-          </script>
-            
-            <script id="timer" type="text/html">
-            <div class="timer">
-            <button data-var="ex">X</button>
-            <div class="note">~note</div>
-            <div class="time-left">~timeLeft</div>
-          </div>
-          </script>
-          </body>
-          </html>
+        </div>
+      </div>
+      <div data-var="timers"></div>
+    </script>
+    
+    <script id="timer" type="text/html">
+      <div class="timer">
+        <button data-var="ex">X</button>
+        <div class="note">~note</div>
+        <div class="time-left">~timeLeft</div>
+      </div>
+    </script>
+  </body>
+</html>
