@@ -1,6 +1,6 @@
 $(function() {
 
-  var body = $("body");
+  var content = $("#content");
 
   // https://gist.github.com/1308368
   function uuid(a, b) {
@@ -57,7 +57,7 @@ $(function() {
         date = new Date();
     date.setSeconds(0);
 
-    self.elem = $("#timers").selectAll(self).appendTo(body);
+    self.elem = $("#timers").selectAll(self).appendTo(content);
 
     if (localStorage.timers) {
       timerData = JSON.parse(localStorage.timers);
